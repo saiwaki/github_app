@@ -1,0 +1,54 @@
+%h1 Courses#show
+User:
+= @course.user
+%br
+Repo:
+= @course.repo
+%br
+SHA:
+= @course.sha
+%br
+%h3 Summary:
+= @course.summary
+%br
+%h3 Description:
+= @course.description
+
+%hr
+%h3 Blob:
+- @blobs.each do |blob|
+  %ol{:id => "selector"}
+    - blob.force_encoding("utf-8").each_line do |line| 
+      %li= raw h(line).gsub("\s", "&nbsp;")
+  %br    
+%br
+%hr
+%h3 Diff:
+.github_diffs#git-accordion
+  - @diff.files.each_with_index do |file, i|
+    .file
+      .file__title
+        %a.title__name
+          = github_diff_file_name file
+
+      .file__content.panel-collapse.collapse.in{:id => "git-#{i}"}
+        - unless file.binary?
+          %table
+            - file.hunks.each do |hunk|
+              %tbody.hunk
+                - hunk.lines.each do |line|
+                  - unless /^\\ No newline at end of file$/ === line.content
+                    %tr{ class: line_class_name(line) }
+                      %td.line__num.line--left
+                        = line.line_number.left unless line.addition?
+                      %td.line__num.line--right
+                        = line.line_number.right unless line.deletion?
+                      %td.line__content
+                        = raw h(line.content).gsub("\s", "&nbsp;").gsub(/^\+/, "&nbsp;").gsub(/^-/, "&nbsp;").force_encoding("utf-8")
+                %tr
+                  %td.hunk__hunk-num
+
+                  %td.hunk__hunk-num
+
+                  %td.hunk__hunk-content
+                    = hunk.range_info
