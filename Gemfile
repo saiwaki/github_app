@@ -42,11 +42,11 @@ group :test, :development do
   gem 'shoulda-matchers'
   
   # Integration Test
-  gem 'turnip'
-  gem 'capybara'
-  gem 'capybara-webkit', '~> 1.4.1'
-  gem 'selenium-webdriver'
-  gem 'rack-test'
+  # gem 'turnip'
+  # gem 'capybara'
+  # gem 'capybara-webkit', '~> 1.4.1'
+  # gem 'selenium-webdriver'
+  # gem 'rack-test'
   
   # Test Data(Factory)
   gem 'factory_girl_rails'
