@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :courses, only: [:show, :new, :create]
-  root to: "main#index"
+  root to: "courses#new"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
