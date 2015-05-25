@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :courses, only: [:show, :new, :create]
-  root to: "courses#new"
+  get 'main/index'
+  resources :courses, only: [:index, :show, :new, :create]
+  root to: "courses#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

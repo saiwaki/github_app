@@ -25,7 +25,13 @@ gem 'octokit'
 gem 'git_diff', git: "git@github.com:kenohata/git_diff.git"
 
 gem 'haml-rails'
+gem 'tilt-jade'
 gem 'bootstrap-sass'
+gem 'font-awesome-rails'
+gem 'jquery-ui-rails'
+gem 'backbone-on-rails'
+gem 'backbone-relational-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

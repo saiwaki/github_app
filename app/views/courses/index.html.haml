@@ -1,20 +1,19 @@
 %div.animsition{"data-animsition-overlay": true}
-  %h1 Courses#new
-  = form_for @course do |f|
-    = f.label :user
-    = f.text_field :user
-    = f.label :repo
-    = f.text_field :repo
-    = f.label :sha
-    = f.text_field :sha
-    = f.submit 'save'
-  %br
+  - @courses.each do |course|
+    \#
+    = course.id
+    = course.user
+    |
+    = course.repo
+    |
+    = link_to course.summary, course_path(course)
+    %br
 
   %hr
-  = link_to "Course index", courses_path, class: 'animsition-link'
+  = link_to "New course", new_course_path, class: 'animsition-link'
 
 :javascript
-  $(document).ready(function() {
+  $(document).ready(function() { 
     $(".animsition").animsition({    
       inClass               :   'fade-in-right',
       outClass              :   'fade-out-left',
