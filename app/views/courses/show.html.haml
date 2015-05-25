@@ -1,4 +1,3 @@
-%h1 Courses#show
 User:
 = @course.user
 %br
@@ -13,17 +12,7 @@ SHA:
 %br
 %h3 Description:
 = @course.description
-
 %hr
-%h3 Blob:
-- @blobs.each do |blob|
-  %ol{:id => "selector"}
-    - blob.force_encoding("utf-8").each_line do |line| 
-      %li= raw h(line).gsub("\s", "&nbsp;")
-  %br    
-%br
-%hr
-%h3 Diff:
 .github_diffs#git-accordion
   - @diff.files.each_with_index do |file, i|
     .file
@@ -44,7 +33,8 @@ SHA:
                       %td.line__num.line--right
                         = line.line_number.right unless line.deletion?
                       %td.line__content
-                        = raw h(line.content).gsub("\s", "&nbsp;").gsub(/^\+/, "&nbsp;").gsub(/^-/, "&nbsp;").force_encoding("utf-8")
+                        %pre.highlightjs<>
+                          = raw h(line.content).gsub("\s", "&nbsp;").gsub(/^\+/, "&nbsp;").gsub(/^-/, "&nbsp;").force_encoding("utf-8")
                 %tr
                   %td.hunk__hunk-num
 
@@ -52,3 +42,18 @@ SHA:
 
                   %td.hunk__hunk-content
                     = hunk.range_info
+  - @blobs.each do |blob|
+    %ol{:id => "selector"}
+      - blob.force_encoding("utf-8").each_line do |line|
+        %li
+          %pre.highlightjs<>
+            = raw h(line).gsub("\s", "&nbsp;")
+    %br
+:javascript
+  hljs.configure({ tabReplace: "  " });
+  //[.highlightjs]で囲まれた中だけをハイライトする
+  $(function(){
+    $(".highlightjs").each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+  });
