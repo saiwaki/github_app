@@ -42,13 +42,14 @@ SHA:
 
                   %td.hunk__hunk-content
                     = hunk.range_info
-  - @blobs.each do |blob|
-    %ol{:id => "selector"}
-      - blob.force_encoding("utf-8").each_line do |line|
-        %li
-          %pre.highlightjs<>
-            = raw h(line).gsub("\s", "&nbsp;")
-    %br
+
+      %ol{:id => "selector"}
+        - @blobs[i].force_encoding("utf-8").each_line do |line|      
+          %li
+            %pre.highlightjs<>
+              = raw h(line).gsub("\s", "&nbsp;")
+      %br
+
 :javascript
   hljs.configure({ tabReplace: "  " });
   //[.highlightjs]で囲まれた中だけをハイライトする
