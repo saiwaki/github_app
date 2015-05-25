@@ -13,42 +13,54 @@ SHA:
 %h3 Description:
 = @course.description
 %hr
-.github_diffs#git-accordion
+.github_diffs
   - @diff.files.each_with_index do |file, i|
-    .file
-      .file__title
-        %a.title__name
-          = github_diff_file_name file
+    %div{:role => "tabpanel", class: "github_diff"}
+      / Nav tabs
+      .nav-tabs-content.file-header
+        .file-name.table
+          .table-cell
+            = github_diff_file_name file
+        .switch-btn.table
+          %ul.nav.nav-tabs.table-cell{:role => "tablist"}
+            %li.active{:role => "diff"}
+              %a.btn.btn-left{"aria-controls" => "diff#{i}", "data-toggle" => "tab", :href => "#diff#{i}", :role => "tab"} Diff
+            %li{:role => "diff"}
+              %a.btn.btn-right{"aria-controls" => "blob#{i}", "data-toggle" => "tab", :href => "#blob#{i}", :role => "tab"} Blob
+            .clear
+        .clear
+      / Tab panes
+      .tab-content
+        .tab-pane.fade.in.active{:role => "tabpanel", :id => "diff#{i}"}
+          .file
+            .file__content.panel-collapse.collapse.in{:id => "git-#{i}"}
+              - unless file.binary?
+                %table
+                  - file.hunks.each do |hunk|
+                    %tbody.hunk
+                      - hunk.lines.each do |line|
+                        - unless /^\\ No newline at end of file$/ === line.content
+                          %tr{ class: line_class_name(line) }
+                            %td.line__num.line--left
+                              = line.line_number.left unless line.addition?
+                            %td.line__num.line--right
+                              = line.line_number.right unless line.deletion?
+                            %td.line__content
+                              %pre.highlightjs<>
+                                = raw h(line.content).gsub("\s", "&nbsp;").gsub(/^\+/, "&nbsp;").gsub(/^-/, "&nbsp;").force_encoding("utf-8")
+                      %tr
+                        %td.hunk__hunk-num
 
-      .file__content.panel-collapse.collapse.in{:id => "git-#{i}"}
-        - unless file.binary?
-          %table
-            - file.hunks.each do |hunk|
-              %tbody.hunk
-                - hunk.lines.each do |line|
-                  - unless /^\\ No newline at end of file$/ === line.content
-                    %tr{ class: line_class_name(line) }
-                      %td.line__num.line--left
-                        = line.line_number.left unless line.addition?
-                      %td.line__num.line--right
-                        = line.line_number.right unless line.deletion?
-                      %td.line__content
-                        %pre.highlightjs<>
-                          = raw h(line.content).gsub("\s", "&nbsp;").gsub(/^\+/, "&nbsp;").gsub(/^-/, "&nbsp;").force_encoding("utf-8")
-                %tr
-                  %td.hunk__hunk-num
+                        %td.hunk__hunk-num
 
-                  %td.hunk__hunk-num
-
-                  %td.hunk__hunk-content
-                    = hunk.range_info
-
-      %ol{:id => "selector blob-#{i}"}
-        - @blobs[i].force_encoding("utf-8").each_line do |line|      
-          %li
-            %pre.highlightjs<>
-              = raw h(line).gsub("\s", "&nbsp;")
-      %br
+                        %td.hunk__hunk-content
+                          = hunk.range_info
+        .tab-pane.fade.in{:role => "tabpanel", :id => "blob#{i}"}
+          %ol{:id => "blob-#{i}", :class => "selector"}
+            - @blobs[i].force_encoding("utf-8").each_line do |line|
+              %li
+                %pre.highlightjs<>
+                  = raw h(line).gsub("\s", "&nbsp;")
 
 :javascript
   hljs.configure({ tabReplace: "  " });
