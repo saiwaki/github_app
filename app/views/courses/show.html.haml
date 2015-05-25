@@ -43,7 +43,7 @@ SHA:
                   %td.hunk__hunk-content
                     = hunk.range_info
 
-      %ol{:id => "selector"}
+      %ol{:id => "selector blob-#{i}"}
         - @blobs[i].force_encoding("utf-8").each_line do |line|      
           %li
             %pre.highlightjs<>
