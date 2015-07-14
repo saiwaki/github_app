@@ -4,4 +4,248 @@
 // @import "bootstrap"
 @import "animsition.min"
 @import "github"
-@import "highgithub"
+@import "highlight-github"
+
+html, body
+  margin: 0
+  padding: 0
+  font-size: 14px
+  font-family: arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  color: #455340
+  width: 100%
+  height: 100%
+  line-height: 1.4
+
+\::selection
+  background: #3c9a43
+  /* Safari
+  color: #fff
+
+\::-moz-selection
+  background: #3c9a43
+  /* Firefox
+  color: #fff
+
+h1, h2, h3, h4, h5, h6
+  margin: 0
+  padding: 0
+
+ul, li
+  margin: 0px
+  padding: 0px
+  list-style-type: none
+
+a
+  color: #3c9a43
+  text-decoration: none
+  &:hover
+    color: #1d5d23
+    text-decoration: none
+
+table
+  border-collapse: collapse
+  width: 100%
+
+.left
+  float: left
+
+.right
+  float: right
+
+.clear
+  clear: both
+
+.inline-block
+  display: inline-block
+
+.middle
+  vertical-align: middle
+
+.table
+  display: table
+  width: 100%
+  height: 100%
+  text-align: center
+
+.table-cell
+  display: table-cell
+  vertical-align: middle
+
+.center
+  text-align: center
+
+.media
+  display: table
+  width: 100%
+
+.media-left, .media-body
+  display: table-cell
+  vertical-align: top
+
+#wrapper
+  min-height: 100%
+  position: relative
+
+#header
+  background-color: #fff
+  width: 100%
+  height: 70px
+  padding: 0px 20px
+  box-sizing: border-box
+  position: relative
+  z-index: 9999
+  border-bottom: 1px solid #ccc
+  border-top: 4px solid #3C9A43
+  .header-left
+    height: 66px
+  .logo img
+    height: 38px
+    display: block
+  .header-right
+    height: 66px
+    ul li
+      height: 66px
+      display: table
+      float: left
+      padding: 0px 15px
+      a
+        font-size: 16px
+        display: table-cell
+        vertical-align: middle
+        color: #555
+        font-weight: 600
+        &:hover
+          color: #419968
+      &.signup a
+        background-color: #3c9a43
+        color: #fff
+        width: 35px
+        height: 35px
+        text-align: center
+        border-radius: 50%
+        display: table
+        &:hover
+          background-color: #3c9a43
+
+#main
+  padding-bottom: 100px
+
+.content
+  width: 980px
+  margin: 0 auto
+
+.main-content
+  width: 700px
+  margin: 0 auto
+
+#footer
+  position: absolute
+  bottom: 0
+  height: 80px
+  width: 100%
+  border-top: 1px solid #ccc
+  background-color: #eee
+  text-align: center
+  display: table
+  .copyright
+    color: #888
+    display: table-cell
+    vertical-align: middle
+
+#page-top
+  position: fixed
+  bottom: 20px
+  right: 20px
+  z-index: 9999
+  a
+    background-color: #0B5F32
+    text-decoration: none
+    color: rgba(255, 255, 255, 0.9)
+    width: 45px
+    height: 45px
+    border: 1px solid #fff
+    text-align: center
+    display: table
+    border-radius: 5px
+    font-size: 24px
+    &:hover
+      text-decoration: none
+      background: #327751
+
+.nav
+  padding-left: 0
+  margin-bottom: 0
+  list-style: none
+  > li
+    position: relative
+    display: block
+    > a
+      position: relative
+      display: block
+      padding: 10px 15px
+      &:hover, &:focus
+        text-decoration: none
+        background-color: #eee
+    &.disabled > a
+      color: #777
+      &:hover, &:focus
+        color: #777
+        text-decoration: none
+        cursor: not-allowed
+        background-color: transparent
+  .open > a
+    background-color: #eee
+    border-color: #337ab7
+    &:hover, &:focus
+      background-color: #eee
+      border-color: #337ab7
+  .nav-divider
+    height: 1px
+    margin: 9px 0
+    overflow: hidden
+    background-color: #e5e5e5
+  > li > a > img
+    max-width: none
+.nav-tabs
+  border-bottom: 1px solid #ddd
+  > li
+    float: left
+    margin-bottom: -1px
+    > a
+      margin-right: 2px
+      line-height: 1.42857143
+      border: 1px solid transparent
+      border-radius: 4px 4px 0 0
+      &:hover
+        border-color: #eee #eee #ddd
+    &.active > a
+      color: #555
+      cursor: default
+      background-color: #fff
+      border: 1px solid #ddd
+      border-bottom-color: transparent
+      &:hover, &:focus
+        color: #555
+        cursor: default
+        background-color: #fff
+        border: 1px solid #ddd
+        border-bottom-color: transparent
+.tab-content >
+  .tab-pane
+    display: none
+  .active
+    display: block
+.fade
+  opacity: 0
+  -webkit-transition: opacity .15s linear
+  -o-transition: opacity .15s linear
+  transition: opacity .15s linear
+  &.in
+    opacity: 1
+
+@media (max-width: 700px)
+  #header
+    padding: 0px
+  .main-content
+    width: 95%

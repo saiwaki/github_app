@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   get 'main/index'
-  post 'main/create'
   resources :courses, only: [:index, :show, :new, :create]
   root to: "courses#index"
   # The priority is based upon order of creation: first created -> highest priority.
