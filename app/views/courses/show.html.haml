@@ -44,6 +44,8 @@ SHA:
                     = hunk.range_info
 
       / blob blob
+      / asdf
+      / blob add force 111112345yaaa
       %ol{:id => "selector blob-#{i}"}
         - @blobs[i].force_encoding("utf-8").each_line do |line|      
           %li
